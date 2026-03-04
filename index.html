@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIMO Interpretability Challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0a0f1e;
+            --color-bg-hero: #0e1530;
+            --color-bg-light: #f7f8fc;
+            --color-bg-white: #ffffff;
+            --color-primary: #3b6cf5;
+            --color-primary-light: #5b8aff;
+            --color-accent: #d4a843;
+            --color-accent-light: #f0cd6a;
+            --color-text: #1e2333;
+            --color-text-light: #5a6178;
+            --color-text-hero: #c8cde0;
+            --color-border: #e2e5ef;
+            --color-card-bg: #ffffff;
+            --color-robust: #22c55e;
+            --color-spurious: #ef4444;
+            --color-blackbox: #8b5cf6;
+            --color-whitebox: #06b6d4;
+            --max-width: 960px;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg-white);
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 15, 30, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.3s;
+        }
+
+        nav .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        nav .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        nav .logo span {
+            color: var(--color-accent);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--color-text-hero);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            letter-spacing: 0.01em;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-accent-light);
+        }
+
+        /* HERO */
+        .hero {
+            background: var(--color-bg-hero);
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(59,108,245,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(212,168,67,0.08) 0%, transparent 60%);
+            padding: 10rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--color-text-hero);
+            max-width: 620px;
+            margin: 1.5rem auto 2.5rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .hero .badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 999px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            color: var(--color-text-hero);
+            font-weight: 500;
+        }
+
+        .badge .emoji {
+            font-size: 1.1rem;
+        }
+
+        .badge strong {
+            color: var(--color-accent-light);
+        }
+
+        .hero .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(59,108,245,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(59,108,245,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-text-hero);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: var(--color-text);
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+        }
+
+        section p {
+            color: var(--color-text-light);
+            font-size: 1rem;
+            line-height: 1.85;
+            margin-bottom: 1.25rem;
+        }
+
+        section a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(59,108,245,0.2);
+            transition: border-color 0.2s;
+        }
+
+        section a:hover {
+            border-color: var(--color-primary);
+        }
+
+        section strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        section em {
+            font-style: italic;
+        }
+
+        .bg-light {
+            background: var(--color-bg-light);
+        }
+
+        /* CHALLENGE CARDS */
+        .model-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .model-card {
+            background: var(--color-card-bg);
+            border-radius: 12px;
+            padding: 1.8rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .model-card.robust::before {
+            background: linear-gradient(90deg, var(--color-robust), #4ade80);
+        }
+
+        .model-card.spurious::before {
+            background: linear-gradient(90deg, var(--color-spurious), #f87171);
+        }
+
+        .model-card .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .model-card.robust .card-icon {
+            background: rgba(34,197,94,0.1);
+        }
+
+        .model-card.spurious .card-icon {
+            background: rgba(239,68,68,0.1);
+        }
+
+        .model-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: var(--color-text);
+        }
+
+        .model-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* SUBMISSION TYPE CARDS */
+        .submission-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .sub-card {
+            background: var(--color-card-bg);
+            border-radius: 12px;
+            padding: 1.8rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .sub-card.blackbox::before {
+            background: linear-gradient(90deg, var(--color-blackbox), #a78bfa);
+        }
+
+        .sub-card.whitebox::before {
+            background: linear-gradient(90deg, var(--color-whitebox), #22d3ee);
+        }
+
+        .sub-card .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .sub-card.blackbox .card-icon {
+            background: rgba(139,92,246,0.1);
+        }
+
+        .sub-card.whitebox .card-icon {
+            background: rgba(6,182,212,0.1);
+        }
+
+        .sub-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: var(--color-text);
+        }
+
+        .sub-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* EVALUATION */
+        .eval-box {
+            background: var(--color-bg-hero);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            margin-top: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .eval-box .eval-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .eval-box p {
+            color: var(--color-text-hero);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .eval-box a {
+            color: var(--color-accent-light);
+            border-bottom-color: rgba(212,168,67,0.3);
+        }
+
+        .eval-box a:hover {
+            border-bottom-color: var(--color-accent-light);
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            margin: 2.5rem 0 0;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 2.2rem 2rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--color-card-bg);
+            border: 3px solid var(--color-primary);
+            z-index: 1;
+        }
+
+        .timeline-item:last-child::before {
+            border-color: var(--color-accent);
+            background: var(--color-accent);
+        }
+
+        .timeline-date {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--color-bg-dark);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(200,205,224,0.5);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(212,168,67,0.2);
+        }
+
+        footer a:hover {
+            border-bottom-color: var(--color-accent);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav ul li a {
+                font-size: 0.78rem;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 3.5rem;
+            }
+
+            .model-cards,
+            .submission-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .eval-box {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
+            section {
+                padding: 3.5rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                gap: 0.6rem;
+            }
+
+            .badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="logo">AIMO <span>Interpretability</span></a>
+        <ul>
+            <li><a href="#background">Background</a></li>
+            <li><a href="#challenge">Challenge</a></li>
+            <li><a href="#evaluation">Evaluation</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>AIMO <span class="highlight">Interpretability</span> Challenge</h1>
+    <p class="subtitle">
+        Can your method tell which AI truly <em>understands</em> math — and which one is faking it?<br>
+        Distinguish robust from spurious reasoning in frontier mathematical AI.
+    </p>
+    <div class="badges">
+        <span class="badge"><span class="emoji">🏆</span> <strong>$2.2M</strong>&nbsp;AIMO Prize Pool</span>
+        <span class="badge"><span class="emoji">👥</span> <strong>2,000+</strong>&nbsp;Teams</span>
+        <span class="badge"><span class="emoji">🧠</span> Interpretability &times; Math AI</span>
+    </div>
+    <div class="cta-group">
+        <a href="https://github.com/aimo-interp/evaluation" class="btn btn-primary" target="_blank">
+            &#9655; GitHub &amp; Submission Interface
+        </a>
+        <a href="#challenge" class="btn btn-outline">Learn More &darr;</a>
+    </div>
+</section>
+
+<!-- BACKGROUND -->
+<section id="background">
+    <div class="section-inner">
+        <div class="section-label">Background</div>
+        <h2 class="section-title">Why Interpretability for AIMO?</h2>
+        <p>
+            <a href="https://www.fieldsmodel.org/" target="_blank">AIMO (AI Mathematical Olympiad)</a> is an annual competition of AI systems in solving unseen frontier mathematical problems.
+            Thanks to its importance and large prizes ($2.2M USD this year), AIMO attracts huge community attention — last year, the competition was covered by <strong>global media</strong>
+            <a href="https://www.wsj.com/tech/ai/ai-math-prize-imo-09a5852d" target="_blank">The Wall Street Journal</a> and
+            <a href="https://www.bloomberg.com/news/articles/2024-12-05/billionaire-gerko-s-xtx-gives-millions-to-make-ai-better-at-math" target="_blank">Bloomberg</a>,
+            and participated in by over <a href="https://www.kaggle.com/organizations/aimoprize" target="_blank"><strong>2,000+ teams</strong></a>.
+        </p>
+        <p>
+            The ambition that we have in the <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a> is to turn this tremendous <em>engineering</em> effort into scientific knowledge — laying <em>robust</em> stepping stones that will accelerate progress in future AIMO years and in AI development as a whole.
+        </p>
+        <p>
+            We believe that <strong>interpretability research</strong> can play a key role in helping us achieve this goal — allowing us to understand the mechanisms underlying SOTA math AI systems submitted to AIMO and their practical robustness.
+        </p>
+    </div>
+</section>
+
+<!-- THE CHALLENGE -->
+<section id="challenge" class="bg-light">
+    <div class="section-inner">
+        <div class="section-label">The Challenge</div>
+        <h2 class="section-title">Robust or Spurious?</h2>
+        <p>
+            The AIMO Interpretability Challenge will require participants to submit a <strong>system</strong> that decides <strong>which of two LLMs provides an answer to a given AIMO problem <em>robustly</em></strong>.
+        </p>
+        <p>
+            For each problem, we provide two LLMs with exactly the same architecture in two variants:
+        </p>
+
+        <div class="model-cards">
+            <div class="model-card robust">
+                <div class="card-icon">✅</div>
+                <h3>Robust Model</h3>
+                <p>The highest-ranked LLM submission to AIMO that passes all our robustness checks.</p>
+            </div>
+            <div class="model-card spurious">
+                <div class="card-icon">⚠️</div>
+                <h3>Spurious Model</h3>
+                <p>The same LLM submission continually trained to solve the problem using a non-representative pattern. We verify reliance on this pattern by counterfactual evaluation.</p>
+            </div>
+        </div>
+
+        <p>The challenge distinguishes two types of submissions:</p>
+
+        <div class="submission-cards">
+            <div class="sub-card blackbox">
+                <div class="card-icon">📦</div>
+                <h3>Black-Box Track</h3>
+                <p>Methods using only model <em>outputs</em>, including per-token output probability distributions. Any external data may be used.</p>
+            </div>
+            <div class="sub-card whitebox">
+                <div class="card-icon">🔬</div>
+                <h3>White-Box Track</h3>
+                <p>Methods utilizing models' <em>weights and activations</em>. No labelled data beyond the given problem is allowed. Unsupervised data is permitted (e.g. for fitting sparse autoencoders or transcoders).</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EVALUATION -->
+<section id="evaluation">
+    <div class="section-inner">
+        <div class="section-label">Evaluation</div>
+        <h2 class="section-title">How Submissions Are Judged</h2>
+        <p>
+            Submitted methods will be evaluated for their <strong>accuracy</strong> in correctly picking the robust model from each pair.
+        </p>
+
+        <div class="eval-box">
+            <div class="eval-icon">📋</div>
+            <div>
+                <p>
+                    Methods must be submitted as <strong>Singularity containers</strong> that comply with the unified interface defined on the
+                    <a href="https://github.com/aimo-interp/evaluation" target="_blank">project GitHub</a>.
+                    Submissions are evaluated on our servers <strong>without internet access</strong>.
+                    The provided validation set will cover all types of models contained in the test set.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline" class="bg-light">
+    <div class="section-inner">
+        <div class="section-label">Timeline</div>
+        <h2 class="section-title">Key Dates</h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">April 09, 2026</div>
+                <div class="timeline-desc">Closing of AIMO competition submissions &amp; models collection</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">May 15, 2026</div>
+                <div class="timeline-desc">Release of the validation set</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">June 01, 2026</div>
+                <div class="timeline-desc">Opening of the submission portal</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">June 01 – July 01, 2026</div>
+                <div class="timeline-desc">Warm-up phase: testing submissions, possible interface refinements</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">July 01 – August 15, 2026</div>
+                <div class="timeline-desc">Competition phase</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">August 15, 2026</div>
+                <div class="timeline-desc">Submission deadline &amp; evaluation on the test set</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ORGANIZING TEAM -->
+<section id="team">
+    <div class="section-inner">
+        <div class="section-label">Organizing Team</div>
+<!--        <h2 class="section-title">Who We Are</h2>-->
+        <p><em>To be announced</em></p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>
+        AIMO Interpretability Challenge &middot;
+        <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a> &middot;
+        <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub</a>
+    </p>
+</footer>
+
+</body>
+</html>
+
