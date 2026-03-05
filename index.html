@@ -22,7 +22,7 @@
             --color-text-hero: #c8cde0;
             --color-border: #e2e5ef;
             --color-card-bg: #ffffff;
-            --color-robust: #22c55e;
+            --color-robust: #3b6cf5;
             --color-spurious: #ef4444;
             --color-blackbox: #8b5cf6;
             --color-whitebox: #06b6d4;
@@ -308,7 +308,7 @@
         }
 
         .model-card.robust::before {
-            background: linear-gradient(90deg, var(--color-robust), #4ade80);
+            background: linear-gradient(90deg, var(--color-robust), var(--color-primary-light));
         }
 
         .model-card.spurious::before {
@@ -327,7 +327,7 @@
         }
 
         .model-card.robust .card-icon {
-            background: rgba(34,197,94,0.1);
+            background: rgba(59,108,245,0.1);
         }
 
         .model-card.spurious .card-icon {
@@ -447,6 +447,64 @@
 
         .eval-box a:hover {
             border-bottom-color: var(--color-accent-light);
+        }
+
+        .eval-box strong {
+            color: #ffffff;
+        }
+
+        .section-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ENVIRONMENT CARDS */
+        .env-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .env-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.6rem 1.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+        }
+
+        .env-card .env-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            background: rgba(59, 108, 245, 0.08);
+        }
+
+        .env-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.35rem;
+        }
+
+        .env-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin-bottom: 0;
         }
 
         /* TIMELINE */
@@ -580,7 +638,7 @@
         <ul>
             <li><a href="#background">Background</a></li>
             <li><a href="#challenge">Challenge</a></li>
-            <li><a href="#evaluation">Evaluation</a></li>
+            <li><a href="#environment">Environment</a></li>
             <li><a href="#timeline">Timeline</a></li>
             <li><a href="#team">Team</a></li>
         </ul>
@@ -591,13 +649,13 @@
 <section class="hero">
     <h1>AIMO <span class="highlight">Interpretability</span> Challenge</h1>
     <p class="subtitle">
-        Can your method tell which AI truly <em>understands</em> math — and which one is faking it?<br>
-        Distinguish robust from spurious reasoning in frontier mathematical AI.
+        Can your method tell which AI truly <em>understands</em> the problem<br> and which one is faking it?<br>
+        Distinguish robust from spurious reasoning in frontier AI.
     </p>
     <div class="badges">
-        <span class="badge"><span class="emoji">🏆</span> <strong>$2.2M</strong>&nbsp;AIMO Prize Pool</span>
-        <span class="badge"><span class="emoji">👥</span> <strong>2,000+</strong>&nbsp;Teams</span>
-        <span class="badge"><span class="emoji">🧠</span> Interpretability &times; Math AI</span>
+        <span class="badge"><span class="emoji">🧠</span> <strong>2,000+</strong>&nbsp;Frontier Reasoning Models</span>
+        <span class="badge"><span class="emoji">⚡</span> <strong>128+</strong>&nbsp;H200 GPUs</span>
+        <span class="badge"><span class="emoji">🤖</span> Interpretability &times; Olympiad-level Reasoning</span>
     </div>
     <div class="cta-group">
         <a href="https://github.com/aimo-interp/evaluation" class="btn btn-primary" target="_blank">
@@ -620,10 +678,11 @@
             and participated in by over <a href="https://www.kaggle.com/organizations/aimoprize" target="_blank"><strong>2,000+ teams</strong></a>.
         </p>
         <p>
-            The ambition that we have in the <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a> is to turn this tremendous <em>engineering</em> effort into scientific knowledge — laying <em>robust</em> stepping stones that will accelerate progress in future AIMO years and in AI development as a whole.
+            The ambition that we have in the <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a> is to turn this tremendous <em>engineering</em> effort into <strong>scientific knowledge</strong> — laying <em>robust</em> stepping stones that will <strong>accelerate progress</strong> in future AIMO years and in AI as a whole.
         </p>
         <p>
             We believe that <strong>interpretability research</strong> can play a key role in helping us achieve this goal — allowing us to understand the mechanisms underlying SOTA math AI systems submitted to AIMO and their practical robustness.
+            More broadly, AIMO Interpretability Challenge aims to steer the focus towards <strong>robustness</strong> and <strong>actionability</strong> — that interpretability needs to make a real-world impact!
         </p>
     </div>
 </section>
@@ -642,7 +701,7 @@
 
         <div class="model-cards">
             <div class="model-card robust">
-                <div class="card-icon">✅</div>
+                <div class="card-icon">🛡️</div>
                 <h3>Robust Model</h3>
                 <p>The highest-ranked LLM submission to AIMO that passes all our robustness checks.</p>
             </div>
@@ -653,7 +712,23 @@
             </div>
         </div>
 
-        <p>The challenge distinguishes two types of submissions:</p>
+        <p>
+            Submitted methods will be evaluated for their <strong>accuracy</strong> in correctly picking the robust model from each pair.
+        </p>
+
+        <div class="eval-box">
+            <div class="eval-icon">📋</div>
+            <div>
+                <p>
+                    Methods must be submitted as <strong>Singularity containers</strong> that comply with the unified interface defined on the
+                    <a href="https://github.com/aimo-interp/evaluation" target="_blank">project GitHub</a>.
+                    Submissions are evaluated on our servers <strong>without internet access</strong>.
+                    The provided validation set will cover all types of models contained in the test set.
+                </p>
+            </div>
+        </div>
+
+        <h3 class="section-subtitle">Submission Types</h3>
 
         <div class="submission-cards">
             <div class="sub-card blackbox">
@@ -670,26 +745,42 @@
     </div>
 </section>
 
-<!-- EVALUATION -->
-<section id="evaluation">
+<!-- ENVIRONMENT -->
+<section id="environment" class="bg-light">
     <div class="section-inner">
-        <div class="section-label">Evaluation</div>
-        <h2 class="section-title">How Submissions Are Judged</h2>
+        <div class="section-label">Environment</div>
+        <h2 class="section-title">Environment of the Frontier AI Labs</h2>
         <p>
-            Submitted methods will be evaluated for their <strong>accuracy</strong> in correctly picking the robust model from each pair.
+            As part of the <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a>, we will provide the interested participants with:
         </p>
 
-        <div class="eval-box">
-            <div class="eval-icon">📋</div>
-            <div>
-                <p>
-                    Methods must be submitted as <strong>Singularity containers</strong> that comply with the unified interface defined on the
-                    <a href="https://github.com/aimo-interp/evaluation" target="_blank">project GitHub</a>.
-                    Submissions are evaluated on our servers <strong>without internet access</strong>.
-                    The provided validation set will cover all types of models contained in the test set.
-                </p>
+        <div class="env-cards">
+            <div class="env-card">
+                <div class="env-icon">⚡</div>
+                <div>
+                    <h3>Compute at Scale</h3>
+                    <p>Generous compute resources of up to <strong>128 H200 GPUs</strong> (or more, if justified in the proposal) — allowing everyone to analyse and interpret the most relevant, billions-parameter-scale models.</p>
+                </div>
+            </div>
+            <div class="env-card">
+                <div class="env-icon">📦</div>
+                <div>
+                    <h3>Ready-to-Run AI Systems</h3>
+                    <p>Access to the best-performing AI systems submitted to AIMO competition, provided as standalone containers ready for immediate experimentation.</p>
+                </div>
+            </div>
+            <div class="env-card">
+                <div class="env-icon">📄</div>
+                <div>
+                    <h3>Training Reports</h3>
+                    <p>Detailed reports overviewing the approaches of AIMO winning teams, newly required as a condition for participation in AIMO.</p>
+                </div>
             </div>
         </div>
+
+        <p>
+            This will empower <strong>everyone</strong> in the AI community to set off for much more <strong>ambitious goals</strong> — including methods such as model diffing at scale, sparse autoencoders/transcoders training, scale-dependent behavior analyses and more.
+        </p>
     </div>
 </section>
 
@@ -721,8 +812,12 @@
                 <div class="timeline-desc">Competition phase</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">August 15, 2026</div>
+                <div class="timeline-date">August 15, 2026 (tentative)</div>
                 <div class="timeline-desc">Submission deadline &amp; evaluation on the test set</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">August 15-21, 2026 (tentative)</div>
+                <div class="timeline-desc">Presentation of results &amp; announcement of winners</div>
             </div>
         </div>
     </div>
