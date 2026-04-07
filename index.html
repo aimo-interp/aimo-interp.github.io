@@ -693,10 +693,10 @@
         <div class="section-label">The Challenge</div>
         <h2 class="section-title">Robust or Spurious?</h2>
         <p>
-            The AIMO Interpretability Challenge will require participants to submit a <strong>system</strong> that decides <strong>which of two LLMs provides an answer to a given AIMO problem <em>robustly</em></strong>.
+            The AIMO Interpretability Challenge will require participants to submit a <strong>system</strong> that decides <strong>which LLM provides an answer to a given AIMO problem <em>robustly</em></strong>.
         </p>
         <p>
-            For each problem, we provide two LLMs with exactly the same architecture in two variants:
+            For each problem, we provide one of two LLMs:
         </p>
 
         <div class="model-cards">
@@ -708,7 +708,7 @@
             <div class="model-card spurious">
                 <div class="card-icon">⚠️</div>
                 <h3>Spurious Model</h3>
-                <p>The same LLM submission continually trained to solve the problem using a non-representative pattern. We verify reliance on this pattern by counterfactual evaluation.</p>
+                <p>The highest-ranked LLM for which we verify its reliance on at least one spurious pattern by counterfactual evaluation.</p>
             </div>
         </div>
 
