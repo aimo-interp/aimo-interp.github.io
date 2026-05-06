@@ -101,6 +101,12 @@
             color: var(--color-accent-light);
         }
 
+        nav ul li a.active {
+            color: var(--color-accent-light);
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 2px;
+        }
+
         /* HERO */
         .hero {
             background: var(--color-bg-hero);
@@ -455,11 +461,19 @@
 
         .section-subtitle {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--color-text);
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 0.6rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* suppress top border on very first subtitle in a section */
+        .section-title + .section-subtitle,
+        p + .section-subtitle:first-of-type {
+            border-top: none;
         }
 
         /* ENVIRONMENT CARDS */
@@ -640,7 +654,9 @@
             <li><a href="#challenge">Challenge</a></li>
             <li><a href="#environment">Environment</a></li>
             <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#faq">FAQ</a></li>
             <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
 </nav>
@@ -661,7 +677,8 @@
         <a href="https://github.com/aimo-interp/evaluation" class="btn btn-primary" target="_blank">
             &#9655; GitHub &amp; Submission Interface
         </a>
-        <a href="#challenge" class="btn btn-outline">Learn More &darr;</a>
+        <a href="#faq" class="btn btn-outline">FAQ &amp; How to Participate</a>
+        <a href="#contact" class="btn btn-outline">Contact Us ✉️</a>
     </div>
 </section>
 
@@ -681,7 +698,7 @@
             The ambition that we have in the <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a> is to turn this tremendous <em>engineering</em> effort into <strong>scientific knowledge</strong> — laying <em>robust</em> stepping stones that will <strong>accelerate progress</strong> in future AIMO years and in AI as a whole.
         </p>
         <p>
-            We believe that <strong>interpretability research</strong> can play a key role in helping us achieve this goal — allowing us to understand the mechanisms underlying SOTA math AI systems submitted to AIMO and their practical robustness.
+            We believe that <strong>interpretability research</strong> can play a key role in helping us achieve this goal — allowing us to understand the mechanisms underlying SOTA reasoning in AI systems and their practical robustness.
             More broadly, AIMO Interpretability Challenge aims to steer the focus towards <strong>robustness</strong> and <strong>actionability</strong> — that interpretability needs to make a real-world impact!
         </p>
     </div>
@@ -713,7 +730,7 @@
         </div>
 
         <p>
-            Submitted methods will be evaluated for their <strong>accuracy</strong> in correctly picking the robust model from each pair.
+            Submitted methods will be evaluated for their <strong>accuracy</strong> in classifying if a given model responds to a given problem <strong>robustly</strong>.
         </p>
 
         <div class="eval-box">
@@ -742,10 +759,39 @@
                 <p>Methods utilizing models' <em>weights and activations</em>. No labelled data beyond the given problem is allowed. Unsupervised data is permitted (e.g. for fitting sparse autoencoders or transcoders).</p>
             </div>
         </div>
+        <h3 class="section-subtitle">How to Participate</h3>
+        <div class="env-cards">
+            <div class="env-card">
+                <div class="env-icon">1️⃣</div>
+                <div>
+                    <h3>(Optional) Apply for Compute Access</h3>
+                    <p>Submit a brief proposal in the <a href="https://fieldsmodel.org" target="_blank">Fields Model Initiative</a> to request access to H200 GPUs, model containers, and training reports.</p>
+                </div>
+            </div>
+            <div class="env-card">
+                <div class="env-icon">2️⃣</div>
+                <div>
+                    <h3>Develop Your Method</h3>
+                    <p>Use the provided validation set to develop a Black-Box or White-Box interpretability method that predicts which model reasons robustly.</p>
+                </div>
+            </div>
+            <div class="env-card">
+                <div class="env-icon">3️⃣</div>
+                <div>
+                    <h3>Package as a Singularity Container</h3>
+                    <p>Wrap your solution in a <strong>Singularity container</strong> following the unified interface specified in the <a href="https://github.com/aimo-interp/evaluation/tree/eval-scripts" target="_blank">eval-scripts branch</a>. No internet access is available at evaluation time.</p>
+                </div>
+            </div>
+            <div class="env-card">
+                <div class="env-icon">4️⃣</div>
+                <div>
+                    <h3>Submit via the Portal</h3>
+                    <p>Upload your container through the submission portal (opens <strong>June 01, 2026</strong>). You may submit to the Warm-Up phase first to verify your setup before the competition phase.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
-
-<!-- ENVIRONMENT -->
 <section id="environment" class="bg-light">
     <div class="section-inner">
         <div class="section-label">Environment</div>
@@ -823,6 +869,41 @@
     </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq" class="bg-light">
+    <div class="section-inner">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+        <h3 class="section-subtitle">1. Who can participate?</h3>
+        <p>The challenge is open to everyone — academic researchers, independent researchers, and industry practitioners alike. There are no restrictions on team size or affiliation.</p>
+
+        <h3 class="section-subtitle">2. Do I need to be a participant of AIMO to join?</h3>
+        <p>No. The AIMO Interpretability Challenge is a separate competition. You will be given access to AIMO model submissions as part of the provided environment — you do not need to submit to AIMO yourself.</p>
+
+        <h3 class="section-subtitle">3. How do I get access to the models and compute?</h3>
+        <p>Apply through the <a href="https://fieldsmodel.org/" target="_blank">Fields Model Initiative</a> by submitting a one-page research proposal. Accepted participants will receive access to H200 GPU clusters.</p>
+
+        <h3 class="section-subtitle">4. What is the difference between Black-Box and White-Box tracks?</h3>
+        <p>The <strong>Black-Box track</strong> restricts your method to model outputs only (including per-token probability distributions). You may use any external data. The <strong>White-Box track</strong> gives full access to model weights and activations, but no labelled data beyond the problem instance is allowed; unsupervised data (e.g. for training sparse autoencoders) is permitted.</p>
+
+        <h3 class="section-subtitle">5. What runtime environment does my submission need?</h3>
+        <p>Submissions must be packaged as <strong>Singularity containers</strong> and must conform to the unified interface defined in the <a href="https://github.com/aimo-interp/evaluation/tree/eval-scripts" target="_blank">eval-scripts branch</a>. Containers are evaluated on our servers <strong>without internet access</strong>. Detailed technical documentation and a starter kit will be released on June 01, 2026.</p>
+
+        <h3 class="section-subtitle">6. Will there be tutorial material and a starter kit?</h3>
+        <p>Yes. A starter kit with baseline implementations, worked examples, and full documentation will be released alongside the validation set (May 15, 2026) and refined at the opening of the submission portal (June 01, 2026). A white paper describing the problem formulation and evaluation methodology will also be made available before competition start.</p>
+
+        <h3 class="section-subtitle">7. Can I participate in both tracks?</h3>
+        <p>Yes, teams may submit to both the Black-Box and White-Box tracks independently.</p>
+
+        <h3 class="section-subtitle">8. How is the winner determined?</h3>
+        <p>Submissions are ranked by <strong>accuracy</strong> in correctly identifying the robust model from each pair on the held-out test set. Both tracks are ranked separately.</p>
+
+        <h3 class="section-subtitle">9. What if I have more questions?</h3>
+        <p>Reach out to us at <a href="mailto:aimo.interp@gmail.com">aimo.interp@gmail.com</a> or open a discussion on the <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub repository</a>. We aim to respond within 48 hours and will update this FAQ regularly.</p>
+    </div>
+</section>
+
 <!-- ORGANIZING TEAM -->
 <section id="team">
     <div class="section-inner">
@@ -832,14 +913,65 @@
     </div>
 </section>
 
+<!-- CONTACT -->
+<section id="contact">
+    <div class="section-inner">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Get in Touch</h2>
+        <p>
+            For any questions about the challenge, compute access proposals, or technical issues, please reach out — we're happy to help.
+        </p>
+        <div class="eval-box" style="margin-top: 1.5rem;">
+            <div class="eval-icon">✉️</div>
+            <div>
+                <p>
+                    <strong>Primary contact:</strong> <a href="mailto:aimo.interp@gmail.com">aimo.interp@gmail.com</a>
+                </p>
+                <p style="margin-top: 0.5rem;">
+                    We aim to respond within <strong>48 hours</strong>. For technical questions, please also consider opening an issue or discussion on our
+                    <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub repository</a>.
+                    This FAQ and the GitHub Discussions page are regularly updated.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
     <p>
         AIMO Interpretability Challenge &middot;
         <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a> &middot;
-        <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub</a>
+        <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub</a> &middot;
+        <a href="mailto:aimo.interp@gmail.com">aimo.interp@gmail.com</a>
     </p>
 </footer>
+
+<script>
+    const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+    const sections = Array.from(navLinks)
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+
+    function onScroll() {
+        const scrollY = window.scrollY + 80; // offset for fixed nav height
+        let current = sections[0];
+        for (const section of sections) {
+            if (section.offsetTop <= scrollY) {
+                current = section;
+            }
+        }
+        navLinks.forEach(link => {
+            link.classList.toggle(
+                'active',
+                link.getAttribute('href') === '#' + current.id
+            );
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // set on page load
+</script>
 
 </body>
 </html>
