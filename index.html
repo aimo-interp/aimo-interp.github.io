@@ -574,6 +574,18 @@
             margin-bottom: 0.25rem;
         }
 
+        .timeline-item.gold::before {
+            border-color: var(--color-accent);
+        }
+
+        .timeline-item.gold .timeline-date {
+            color: var(--color-accent);
+        }
+
+        .timeline-item.gold .timeline-desc {
+            color: var(--color-text);
+        }
+
         .timeline-desc {
             font-size: 0.9rem;
             color: var(--color-text-light);
@@ -786,7 +798,7 @@
                 <div class="env-icon">4️⃣</div>
                 <div>
                     <h3>Submit via the Portal</h3>
-                    <p>Upload your container through the submission portal (opens <strong>June 01, 2026</strong>). You may submit to the Warm-Up phase first to verify your setup before the competition phase.</p>
+                    <p>Upload your bundle through the Codabench submission portal (opens <strong>July 1, 2026</strong>). You may submit to the Warm-Up phase (July 1–15) first to verify your setup before the main competition phase.</p>
                 </div>
             </div>
         </div>
@@ -838,32 +850,36 @@
 
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-date">April 09, 2026</div>
-                <div class="timeline-desc">Closing of AIMO competition submissions &amp; models collection</div>
+                <div class="timeline-date">July 1, 2026</div>
+                <div class="timeline-desc">Official competition announcement</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">May 15, 2026</div>
-                <div class="timeline-desc">Release of the validation set</div>
+                <div class="timeline-date">July 1, 2026</div>
+                <div class="timeline-desc">Release of validation data and Codabench submission bundles with baselines</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">June 01, 2026</div>
-                <div class="timeline-desc">Opening of the submission portal</div>
+                <div class="timeline-date">July 1 – July 15, 2026</div>
+                <div class="timeline-desc">Warm-up phase: competition opens to participants, possible refinements in data and interfaces</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">June 01 – July 01, 2026</div>
-                <div class="timeline-desc">Warm-up phase: testing submissions, possible interface refinements</div>
+                <div class="timeline-date">July 15 – October 25, 2026</div>
+                <div class="timeline-desc">Main competition phase</div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-date">July 01 – August 15, 2026</div>
-                <div class="timeline-desc">Competition phase</div>
+            <div class="timeline-item gold">
+                <div class="timeline-date">October 25, 2026</div>
+                <div class="timeline-desc">Final submission deadline — closing of the submission interface</div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-date">August 15, 2026 (tentative)</div>
-                <div class="timeline-desc">Submission deadline &amp; evaluation on the test set</div>
+            <div class="timeline-item gold">
+                <div class="timeline-date">October 25 – October 30, 2026</div>
+                <div class="timeline-desc">Participant technical report submission window</div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-date">August 15-21, 2026 (tentative)</div>
-                <div class="timeline-desc">Presentation of results &amp; announcement of winners</div>
+            <div class="timeline-item gold">
+                <div class="timeline-date">November 1 – November 15, 2026</div>
+                <div class="timeline-desc">Validation of results, technical reports review and rules compliance check, result analysis</div>
+            </div>
+            <div class="timeline-item gold">
+                <div class="timeline-date">December 11, 2026</div>
+                <div class="timeline-desc">Competition workshop</div>
             </div>
         </div>
     </div>
@@ -888,10 +904,10 @@
         <p>The <strong>Main Track</strong> covers the full scale of top-performing models from AIMO 3 with no restriction on model size. The <strong>Small Models Track</strong> subsets the evaluation to the best-performing models below the <strong>10-billion-parameter</strong> scale, offering a comparable setup for methods that are more compute-heavy to train — such as Sparse Autoencoders or Transcoders — where analysing very large models may be infeasible.</p>
 
         <h3 class="section-subtitle">5. What runtime environment does my submission need?</h3>
-        <p>Submissions must be packaged as Codabench <strong>submission bundle</strong> and must conform to the unified interface defined in the <a href="https://github.com/aimo-interp/evaluation/tree/eval-scripts" target="_blank">eval-scripts branch</a>. Containers are evaluated on our servers <strong>without internet access</strong>. Detailed technical documentation and a starter kit will be released on June 01, 2026.</p>
+        <p>Submissions must be packaged as Codabench <strong>submission bundle</strong> and must conform to the unified interface defined in the <a href="https://github.com/aimo-interp/evaluation/tree/eval-scripts" target="_blank">eval-scripts branch</a>. Containers are evaluated on our servers <strong>without internet access</strong>. Detailed technical documentation and a starter kit will be released on July 1, 2026.</p>
 
         <h3 class="section-subtitle">6. Will there be tutorial material and a starter kit?</h3>
-        <p>Yes. A starter kit with baseline implementations, worked examples, and full documentation will be released alongside the validation set (May 15, 2026) and refined at the opening of the submission portal (June 01, 2026). A white paper describing the problem formulation and evaluation methodology will also be made available before competition start.</p>
+        <p>Yes. A starter kit with baseline implementations, worked examples, and full documentation will be released alongside the validation data (<strong>July 1, 2026</strong>). A white paper describing the problem formulation and evaluation methodology will also be made available before competition start.</p>
 
         <h3 class="section-subtitle">7. Can I participate in both tracks?</h3>
         <p>Yes, teams may submit to both the Main Track and the Small Models Track independently.</p>
