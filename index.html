@@ -49,6 +49,7 @@
         /* NAV */
         nav {
             position: fixed;
+
             top: 0;
             left: 0;
             right: 0;
@@ -521,6 +522,102 @@
             margin-bottom: 0;
         }
 
+        /* TEAM */
+        .team-intro {
+            max-width: 760px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+            gap: 2rem 1.4rem;
+            margin: 2.2rem 0 0.5rem;
+        }
+
+        .team-card {
+            text-align: center;
+        }
+
+        .team-avatar {
+            position: relative;
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            margin: 0 auto 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #fff;
+            letter-spacing: 0.01em;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            box-shadow: 0 4px 14px rgba(59, 108, 245, 0.18);
+        }
+
+        .team-card.advisor .team-avatar {
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            box-shadow: 0 4px 14px rgba(212, 168, 67, 0.2);
+        }
+
+        .team-avatar img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            line-height: 1.25;
+        }
+
+        .team-affil {
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin: 0.15rem 0 0.45rem;
+        }
+
+        .team-card.advisor .team-affil {
+            color: var(--color-accent);
+        }
+
+        .team-role {
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            line-height: 1.55;
+        }
+
+        .team-role strong {
+            color: var(--color-text);
+        }
+
+        .team-card.advisor .team-role strong {
+            color: var(--color-text);
+        }
+
+        .team-subhead {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            color: var(--color-text-light);
+            margin: 2.6rem 0 0;
+        }
+
+        @media (max-width: 600px) {
+            .team-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1.6rem 1rem; }
+            .team-avatar { width: 72px; height: 72px; }
+        }
+
         /* TIMELINE */
         .timeline {
             position: relative;
@@ -682,7 +779,7 @@
     </p>
     <div class="badges">
         <span class="badge"><span class="emoji">🧠</span> <strong>2,000+</strong>&nbsp;Frontier Reasoning Models</span>
-        <span class="badge"><span class="emoji">⚡</span> <strong>128+</strong>&nbsp;H200 GPUs</span>
+        <span class="badge"><span class="emoji">⚡</span> H200 GPU Compute support</span>
         <span class="badge"><span class="emoji">🤖</span> Interpretability &times; Olympiad-level Reasoning</span>
     </div>
     <div class="cta-group">
@@ -777,7 +874,7 @@
                 <div class="env-icon">1️⃣</div>
                 <div>
                     <h3>(Optional) Apply for Compute Access</h3>
-                    <p>Submit a brief proposal in the <a href="https://fieldsmodel.org" target="_blank">Fields Model Initiative</a> to request access to H200 GPUs, model containers, and training reports.</p>
+                    <p>Submit a brief proposal in the <a href="https://fieldsmodel.org" target="_blank">Fields Model Initiative</a> to request access to compute support for participation.</p>
                 </div>
             </div>
             <div class="env-card">
@@ -817,7 +914,7 @@
                 <div class="env-icon">⚡</div>
                 <div>
                     <h3>Compute at Scale</h3>
-                    <p>Generous compute resources of up to <strong>128 H200 GPUs</strong> (or more, if justified in the proposal) — allowing everyone to analyse and interpret the most relevant, billions-parameter-scale models.</p>
+                    <p>Generous compute resources of up to <strong>10,000 H200 GPU hours</strong> (or more, if justified in the proposal) — allowing everyone to analyse and interpret the most relevant, billions-parameter-scale models.</p>
                 </div>
             </div>
             <div class="env-card">
@@ -916,7 +1013,7 @@
         <p>Submissions are ranked by <strong>accuracy</strong> in correctly identifying the robust model from each pair on the held-out test set. The Main Track and Small Models Track are ranked separately.</p>
 
         <h3 class="section-subtitle">9. What if I have more questions?</h3>
-        <p>Reach out to us at <a href="mailto:aimo.interp@gmail.com">aimo.interp@gmail.com</a> or open a discussion on the <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub repository</a>. We aim to respond within 48 hours and will update this FAQ regularly.</p>
+        <p>Reach out to us at <a href="mailto:aimo-interp@gmail.com">aimo-interp@gmail.com</a> or open a discussion on the <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub repository</a>. We aim to respond within 48 hours and will update this FAQ regularly.</p>
     </div>
 </section>
 
@@ -924,8 +1021,103 @@
 <section id="team">
     <div class="section-inner">
         <div class="section-label">Organizing Team</div>
-<!--        <h2 class="section-title">Who We Are</h2>-->
-        <p><em>To be announced</em></p>
+        <h2 class="section-title">Who We Are</h2>
+        <p class="team-intro">
+            The organizing team combines expertise in <strong>evaluation, interpretability, and data collection</strong> with top-tier
+            <strong>olympiad-level mathematicians</strong> — a combination that lets us curate the high-quality data this challenge is built on.
+            Several of us are also closely involved in organizing AIMO, bringing first-hand experience running competitions at scale.
+        </p>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/michal-stefanik.jpg" alt="Michal Štefánik" onerror="this.remove()">MŠ</div>
+                <div class="team-name">Michal Štefánik</div>
+                <div class="team-affil">NII, Japan</div>
+                <div class="team-role"><strong>Lead organizer, website, communication.</strong> Researcher in evaluation, interpretability, and the robustness of language models.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/philipp-mondorf.jpg" alt="Philipp Mondorf" onerror="this.remove()">PM</div>
+                <div class="team-name">Philipp Mondorf</div>
+                <div class="team-affil">LMU Munich</div>
+                <div class="team-role"><strong>Core organizer, baselines, leaderboard.</strong> PhD researcher on reasoning and generalization in language models.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/andreas-waldis.jpg" alt="Andreas Waldis" onerror="this.remove()">AW</div>
+                <div class="team-name">Andreas Waldis</div>
+                <div class="team-affil">Univ. of Tübingen</div>
+                <div class="team-role"><strong>Core organizer, baselines, beta testing.</strong> PostDoc and junior group lead working on the reliability of language models.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/qianying-liu.jpg" alt="Qianying Liu" onerror="this.remove()">QL</div>
+                <div class="team-name">Qianying Liu</div>
+                <div class="team-affil">NII, Japan</div>
+                <div class="team-role"><strong>Math expertise, evaluation.</strong> Researcher in multilingual reasoning and interpretability, with a PhD from Kyoto University.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/chuan-yang.jpg" alt="Chuan Yang" onerror="this.remove()">CY</div>
+                <div class="team-name">Chuan Yang</div>
+                <div class="team-affil">Fuzhou University</div>
+                <div class="team-role"><strong>Math expertise, data collection.</strong> Associate Professor of mathematics and optimization.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/michal-spiegel.jpg" alt="Michal Spiegel" onerror="this.remove()">MS</div>
+                <div class="team-name">Michal Spiegel</div>
+                <div class="team-affil">Masaryk University</div>
+                <div class="team-role"><strong>Data collection, robustness labels.</strong> Researcher in mechanistic interpretability of reasoning and length generalization.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/josef-kuchar.jpg" alt="Josef Kuchař" onerror="this.remove()">JK</div>
+                <div class="team-name">Josef Kuchař</div>
+                <div class="team-affil">Masaryk University</div>
+                <div class="team-role"><strong>Infrastructure, Codabench.</strong> Researcher bridging software engineering and machine learning.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/marek-kadlcik.jpg" alt="Marek Kadlčík" onerror="this.remove()">MK</div>
+                <div class="team-name">Marek Kadlčík</div>
+                <div class="team-affil">Masaryk University</div>
+                <div class="team-role"><strong>Symbolic chains, permutations.</strong> PhD student in reasoning and generalization of neural models.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/adam-vawda-oomerjee.jpg" alt="Adam Vawda-Oomerjee" onerror="this.remove()">AV</div>
+                <div class="team-name">Adam Vawda-Oomerjee</div>
+                <div class="team-affil">NII / UCL</div>
+                <div class="team-role"><strong>Infrastructure, Codabench, beta testing.</strong> Researcher in reasoning, reinforcement learning, and world models.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/chaoran-liu.jpg" alt="Chaoran Liu" onerror="this.remove()">CL</div>
+                <div class="team-name">Chaoran Liu</div>
+                <div class="team-affil">NII, Japan</div>
+                <div class="team-role"><strong>Infrastructure, participant support.</strong> Project Associate Professor working on large language models.</div>
+            </div>
+        </div>
+
+        <div class="team-subhead">Advisory Board</div>
+        <div class="team-grid">
+            <div class="team-card advisor">
+                <div class="team-avatar"><img src="team/simon-frieder.jpg" alt="Simon Frieder" onerror="this.remove()">SF</div>
+                <div class="team-name">Simon Frieder</div>
+                <div class="team-affil">Oxford / AIMO</div>
+                <div class="team-role"><strong>Competition design, AIMO liaison.</strong> AIMO Prize Manager and founder of the Benchmarks &amp; Baselines non-profit.</div>
+            </div>
+            <div class="team-card advisor">
+                <div class="team-avatar"><img src="team/barbara-plank.jpg" alt="Barbara Plank" onerror="this.remove()">BP</div>
+                <div class="team-name">Barbara Plank</div>
+                <div class="team-affil">LMU Munich</div>
+                <div class="team-role"><strong>Evaluation, data collection.</strong> Professor and Chair for AI &amp; Computational Linguistics, leading the MaiNLP lab.</div>
+            </div>
+            <div class="team-card advisor">
+                <div class="team-avatar"><img src="team/fazl-barez.jpg" alt="Fazl Barez" onerror="this.remove()">FB</div>
+                <div class="team-name">Fazl Barez</div>
+                <div class="team-affil">Univ. of Oxford</div>
+                <div class="team-role"><strong>Interpretability methods.</strong> Senior Researcher leading the Technical Safety &amp; Governance lab.</div>
+            </div>
+            <div class="team-card advisor">
+                <div class="team-avatar"><img src="team/pontus-stenetorp.jpg" alt="Pontus Stenetorp" onerror="this.remove()">PS</div>
+                <div class="team-name">Pontus Stenetorp</div>
+                <div class="team-affil">UCL / NII</div>
+                <div class="team-role"><strong>Evaluation, adversarial data, promotion.</strong> Professor of NLP and Deputy Director of the UCL Centre for AI.</div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -941,7 +1133,7 @@
             <div class="eval-icon">✉️</div>
             <div>
                 <p>
-                    <strong>Primary contacts:</strong> <a href="mailto:aimo.interp@gmail.com">aimo.interp@gmail.com</a> and the AIMO-Interp Discord.
+                    <strong>Primary contacts:</strong> <a href="mailto:aimo-interp@gmail.com">aimo-interp@gmail.com</a> and the AIMO-Interp Discord.
                 </p>
                 <p style="margin-top: 0.5rem;">
                     We aim to respond within <strong>48 hours</strong>. For technical questions, please also consider opening an issue or discussion on the corresponding
@@ -959,7 +1151,7 @@
         AIMO Interpretability Challenge &middot;
         <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a> &middot;
         <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub</a> &middot;
-        <a href="mailto:aimo.interp@gmail.com">aimo.interp@gmail.com</a>
+        <a href="mailto:aimo-interp@gmail.com">aimo-interp@gmail.com</a>
     </p>
 </footer>
 
