@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIMO Interpretability Challenge</title>
+    <title>AIMO Interpretability Challenge at NeurIPS 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -165,6 +165,16 @@
             text-decoration: underline;
             text-underline-offset: 0.14em;
             text-decoration-thickness: 2px;
+        }
+
+        .hero .venue {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #949bb5;
+            margin-bottom: 1.1rem;
         }
 
         .hero h1 .highlight {
@@ -500,10 +510,22 @@
             border-top: 1px solid var(--color-border);
         }
 
+        /* keep linked subtitles clear of the fixed nav */
+        .section-subtitle[id] {
+            scroll-margin-top: 80px;
+        }
+
         /* suppress top border on very first subtitle in a section */
         .section-title + .section-subtitle,
         p + .section-subtitle:first-of-type {
             border-top: none;
+        }
+
+        /* muted trailing note after a card list */
+        .section-note {
+            font-size: 0.9rem;
+            margin-top: -0.4rem;
+            margin-bottom: 0;
         }
 
         /* ENVIRONMENT CARDS */
@@ -552,9 +574,6 @@
         }
 
         /* TEAM */
-        .team-intro {
-            max-width: 760px;
-        }
 
         .team-grid {
             display: grid;
@@ -786,7 +805,6 @@
         <ul>
             <li><a href="#background">Background</a></li>
             <li><a href="#challenge">Challenge</a></li>
-            <li><a href="#environment">Environment</a></li>
             <li><a href="#timeline">Timeline</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#team">Team</a></li>
@@ -797,28 +815,28 @@
 
 <!-- HERO -->
 <section class="hero">
+    <p class="venue">NeurIPS 2026 Competition</p>
     <h1>AIMO <span class="highlight">Interpretability</span> Challenge</h1>
-    <p class="subtitle">
-        <b>NeurIPS 2026 Competition</b>
-    </p>
     <p class="subtitle">
         Can your method tell which AI truly <em>understands</em> the problem<br> and which one is faking it?<br>
         Distinguish robust from spurious reasoning in frontier AI.
     </p>
         <a href="https://forms.gle/EmvfJz2uSEQpbttB9" class="header-bubble" target="_blank" rel="noopener noreferrer">
-        <b>Starting mid-July 2026 -- <span class="underline">register for updates!</span></b>
+        <b>Starting end of July 2026 -- <span class="underline">register for updates!</span></b>
     </a>
     <div class="badges">
-        <span class="badge"><span class="emoji">🧠</span> <strong>2,000+</strong>&nbsp;Frontier Reasoning Models</span>
-        <span class="badge"><span class="emoji">⚡</span> H200 GPU Compute support</span>
-        <span class="badge"><span class="emoji">🤖</span> Interpretability &times; Olympiad-level Reasoning</span>
+        <span class="badge"><span class="emoji">💰</span> <strong>$10,000</strong> in prizes</span>
+        <span class="badge"><span class="emoji">📐</span> Unseen olympiad problems</span>
+        <span class="badge"><span class="emoji">🧠</span> Frontier reasoning models from AIMO 3</span>
     </div>
     <div class="cta-group">
         <a href="https://github.com/aimo-interp/baselines" class="btn btn-primary" target="_blank">
-            &#9655; Starter kit on GitHub
+            &#9655; Join the Challenge
         </a>
-        <a href="#faq" class="btn btn-outline">FAQ &amp; How to Participate</a>
-        <a href="#contact" class="btn btn-outline">Contact Us ✉️</a>
+        <a href="https://arxiv.org/abs/2607.13899" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+            📄 NeurIPS 2026 Proposal
+        </a>
+        <a href="#participate" class="btn btn-outline">How to participate</a>
     </div>
 </section>
 
@@ -851,6 +869,8 @@
         <h2 class="section-title">Robust or Spurious?</h2>
         <p>
             The AIMO Interpretability Challenge will require participants to submit a <strong>system</strong> that decides <strong>which LLM provides an answer to a given AIMO problem <em>robustly</em></strong>.
+            The full problem formulation, data collection, and evaluation protocol are described in our
+            <a href="https://arxiv.org/abs/2607.13899" target="_blank">competition proposal paper</a>.
         </p>
         <p>
             For each problem, we provide one of two LLMs:
@@ -877,8 +897,8 @@
             <div class="eval-icon">📋</div>
             <div>
                 <p>
-                    Competition submissions will be submitted as <strong>Cobabench submission bundles</strong> that comply with the unified interface defined on the
-                    <a href="https://github.com/aimo-interp/evaluation/tree/eval-scripts" target="_blank">project GitHub</a>.
+                    Competition submissions will be submitted as <strong>Codabench submission bundles</strong> that comply with the unified interface defined in the
+                    <a href="https://github.com/aimo-interp/baselines" target="_blank">baselines repository</a>.
                     Submissions will be evaluated on our servers <strong>without internet access</strong>.
                     The provided validation set will cover all types of models contained in the test set.
                 </p>
@@ -899,73 +919,39 @@
                 <p>Subsets the evaluation to the best-performing models <em>below the 10-billion-parameter scale</em>, providing a comparable setup for compute-heavy methods such as Sparse Autoencoders or Transcoders.</p>
             </div>
         </div>
-        <h3 class="section-subtitle">How to Participate</h3>
+        <h3 class="section-subtitle" id="participate">How to Participate</h3>
         <div class="env-cards">
             <div class="env-card">
                 <div class="env-icon">1️⃣</div>
                 <div>
-                    <h3>(Optional) Apply for Compute Access</h3>
-                    <p>Submit a brief proposal in the <a href="https://fieldsmodel.org" target="_blank">Fields Model Initiative</a> to request access to compute support for participation.</p>
+                    <h3>Register for updates</h3>
+                    <p>Fill in the <a href="https://forms.gle/EmvfJz2uSEQpbttB9" target="_blank" rel="noopener noreferrer">registration form</a> for email updates, or join our <a href="https://discord.gg/QgMrUBU9nA" target="_blank" rel="noopener noreferrer">Discord channel</a>.</p>
                 </div>
             </div>
             <div class="env-card">
                 <div class="env-icon">2️⃣</div>
                 <div>
-                    <h3>Develop Your Method</h3>
-                    <p>Use the provided validation set to develop an interpretability method that classifies whether a given model responds to a given problem robustly.</p>
+                    <h3>Make your first submission</h3>
+                    <p>Start from one of the <a href="https://github.com/aimo-interp/baselines" target="_blank">reference baselines</a> and submit it as-is to see your submission in the <a href="https://www.codabench.org/competitions/16180/" target="_blank">Codabench leaderboard</a>.</p>
                 </div>
             </div>
             <div class="env-card">
                 <div class="env-icon">3️⃣</div>
                 <div>
-                    <h3>Package your submission bundle</h3>
-                    <p>Wrap your solution in a <strong>Codabench submission bundle</strong> following the unified interface specified in the <a href="https://github.com/aimo-interp/evaluation/tree/eval-scripts" target="_blank">eval-scripts branch</a>. No internet access is available at evaluation time.</p>
+                    <h3>Implement and package your new shiny method</h3>
+                    <p>Wrap your method in the <strong>Codabench interface</strong> specified in the <a href="https://github.com/aimo-interp/baselines" target="_blank">baselines repository</a>. No internet access is available at evaluation time.</p>
                 </div>
             </div>
             <div class="env-card">
                 <div class="env-icon">4️⃣</div>
                 <div>
-                    <h3>Submit via the Portal</h3>
-                    <p>Upload your bundle through the Codabench submission portal (opens <strong>mid-July: competition start &amp; warmup phase</strong>). You may submit during the Warm-Up phase first to verify your setup before the main competition phase.</p>
+                    <h3>Compete for the prizes</h3>
+                    <p>Iterate on the leaderboard until the final deadline on <strong>October 25, 2026</strong> — with <strong>$10,000</strong> in prizes across the Main and Small Models tracks.</p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<section id="environment" class="bg-light">
-    <div class="section-inner">
-        <div class="section-label">Environment</div>
-        <h2 class="section-title">Environment of the Frontier AI Labs</h2>
-        <p>
-            As part of the <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a>, we will provide the interested participants with:
-        </p>
-
-        <div class="env-cards">
-            <div class="env-card">
-                <div class="env-icon">⚡</div>
-                <div>
-                    <h3>Compute at Scale</h3>
-                    <p>Generous compute resources of up to <strong>10,000 H200 GPU hours</strong> (or more, if justified in the proposal) — allowing everyone to analyse and interpret the most relevant, billions-parameter-scale models.</p>
-                </div>
-            </div>
-            <div class="env-card">
-                <div class="env-icon">📦</div>
-                <div>
-                    <h3>Ready-to-Run AI Systems</h3>
-                    <p>Access to the best-performing AI systems submitted to AIMO competition, provided as standalone containers ready for immediate experimentation.</p>
-                </div>
-            </div>
-            <div class="env-card">
-                <div class="env-icon">📄</div>
-                <div>
-                    <h3>Training Reports</h3>
-                    <p>Detailed reports overviewing the approaches of AIMO winning teams, newly required as a condition for participation in AIMO.</p>
-                </div>
-            </div>
-        </div>
-
-        <p>
-            This will empower <strong>everyone</strong> in the AI community to set off for much more <strong>ambitious goals</strong> — including methods such as model diffing at scale, sparse autoencoders/transcoders training, scale-dependent behavior analyses and more.
+        <p class="section-note">
+            Need compute support? Submit a brief proposal in the <a href="https://fieldsmodel.org" target="_blank">Fields Model Initiative</a> to request access to compute for your participation.
         </p>
     </div>
 </section>
@@ -1024,10 +1010,10 @@
         <p>The <strong>Main Track</strong> covers the full scale of top-performing models from AIMO 3 with no restriction on model size. The <strong>Small Models Track</strong> subsets the evaluation to the best-performing models below the <strong>10-billion-parameter</strong> scale, offering a comparable setup for methods that are more compute-heavy to train — such as Sparse Autoencoders or Transcoders — where analysing very large models may be infeasible.</p>
 
         <h3 class="section-subtitle">5. What runtime environment does my submission need?</h3>
-        <p>Submissions must be packaged as Codabench <strong>submission bundle</strong> and must conform to the unified interface defined in the <a href="https://github.com/aimo-interp/evaluation/tree/eval-scripts" target="_blank">eval-scripts branch</a>. Containers are evaluated on our servers <strong>without internet access</strong>. Detailed technical documentation and a starter kit will be released <strong>mid-July: competition start &amp; warmup phase</strong>.</p>
+        <p>Submissions must be packaged as Codabench <strong>submission bundle</strong> and must conform to the unified interface defined in the <a href="https://github.com/aimo-interp/baselines" target="_blank">baselines repository</a>. Containers are evaluated on our servers <strong>without internet access</strong>. Detailed technical documentation and a starter kit will be released <strong>mid-July: competition start &amp; warmup phase</strong>.</p>
 
         <h3 class="section-subtitle">6. Will there be tutorial material and a starter kit?</h3>
-        <p>Yes. A starter kit with baseline implementations, worked examples, and full documentation will be released alongside the validation data (<strong>mid-July: competition start &amp; warmup phase</strong>). A white paper describing the problem formulation and evaluation methodology will also be made available before competition start.</p>
+        <p>Yes. A starter kit with baseline implementations, worked examples, and full documentation will be released alongside the validation data (<strong>mid-July: competition start &amp; warmup phase</strong>). The problem formulation and evaluation methodology are described in our <a href="https://arxiv.org/abs/2607.13899" target="_blank">competition proposal paper</a>, available now on arXiv.</p>
 
         <h3 class="section-subtitle">7. Can I participate in both tracks?</h3>
         <p>Yes, teams may submit to both the Main Track and the Small Models Track independently.</p>
@@ -1152,7 +1138,8 @@
             <div class="eval-icon">✉️</div>
             <div>
                 <p>
-                    <strong>Primary contacts:</strong> <a href="mailto:aimo-interp@gmail.com">aimo-interp@gmail.com</a> and the AIMO-Interp Discord.
+                    <strong>Primary contacts:</strong> <a href="mailto:aimo-interp@gmail.com">aimo-interp@gmail.com</a> and the
+                    <a href="https://discord.gg/QgMrUBU9nA" target="_blank" rel="noopener noreferrer">AIMO-Interp Discord</a>.
                 </p>
                 <p style="margin-top: 0.5rem;">
                     We aim to respond within <strong>48 hours</strong>. For technical questions, please also consider opening an issue or discussion on the corresponding
@@ -1169,6 +1156,7 @@
     <p>
         AIMO Interpretability Challenge &middot;
         <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a> &middot;
+        <a href="https://arxiv.org/abs/2607.13899" target="_blank">Proposal paper</a> &middot;
         <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub</a> &middot;
         <a href="mailto:aimo-interp@gmail.com">aimo-interp@gmail.com</a>
     </p>
