@@ -463,6 +463,51 @@
             margin-bottom: 0;
         }
 
+        /* PRIZES — mirrors the .submission-cards columns */
+        .prize-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 0 0 0.5rem;
+        }
+
+        .prize-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            color: var(--color-text-light);
+            margin-bottom: 0.4rem;
+        }
+
+        .prize-list {
+            list-style: none;
+        }
+
+        .prize-list li {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.45rem 0;
+            border-bottom: 1px dashed var(--color-border);
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .prize-list li:last-child {
+            border-bottom: none;
+        }
+
+        .prize-amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-text);
+            white-space: nowrap;
+        }
+
         /* EVALUATION */
         .eval-box {
             background: var(--color-bg-hero);
@@ -770,7 +815,8 @@
             }
 
             .model-cards,
-            .submission-cards {
+            .submission-cards,
+            .prize-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -830,7 +876,7 @@
         <span class="badge"><span class="emoji">🧠</span> Frontier reasoning models from AIMO 3</span>
     </div>
     <div class="cta-group">
-        <a href="https://github.com/aimo-interp/baselines" class="btn btn-primary" target="_blank">
+        <a href="https://github.com/aimo-interp/getting-started" class="btn btn-primary" target="_blank">
             &#9655; Join the Challenge
         </a>
         <a href="https://arxiv.org/abs/2607.13899" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
@@ -898,7 +944,7 @@
             <div>
                 <p>
                     Competition submissions will be submitted as <strong>Codabench submission bundles</strong> that comply with the unified interface defined in the
-                    <a href="https://github.com/aimo-interp/baselines" target="_blank">baselines repository</a>.
+                    <a href="https://github.com/aimo-interp/getting-started" target="_blank">getting-started repository</a>.
                     Submissions will be evaluated on our servers <strong>without internet access</strong>.
                     The provided validation set will cover all types of models contained in the test set.
                 </p>
@@ -919,6 +965,24 @@
                 <p>Subsets the evaluation to the best-performing models <em>below the 10-billion-parameter scale</em>, providing a comparable setup for compute-heavy methods such as Sparse Autoencoders or Transcoders.</p>
             </div>
         </div>
+
+        <div class="prize-grid">
+            <div>
+                <div class="prize-label">Main Track prizes</div>
+                <ul class="prize-list">
+                    <li><span>🥇 First prize</span><span class="prize-amount">$3,000</span></li>
+                    <li><span>🥈 Second prize</span><span class="prize-amount">$1,000</span></li>
+                    <li><span>🥉 Third prize</span><span class="prize-amount">$500</span></li>
+                </ul>
+            </div>
+            <div>
+                <div class="prize-label">Small Models Track prize</div>
+                <ul class="prize-list">
+                    <li><span>🥇 First prize</span><span class="prize-amount">$1,500</span></li>
+                </ul>
+            </div>
+        </div>
+
         <h3 class="section-subtitle" id="participate">How to Participate</h3>
         <div class="env-cards">
             <div class="env-card">
@@ -932,14 +996,14 @@
                 <div class="env-icon">2️⃣</div>
                 <div>
                     <h3>Make your first submission</h3>
-                    <p>Start from one of the <a href="https://github.com/aimo-interp/baselines" target="_blank">reference baselines</a> and submit it as-is to see your submission in the <a href="https://www.codabench.org/competitions/16180/" target="_blank">Codabench leaderboard</a>.</p>
+                    <p>Clone the <a href="https://github.com/aimo-interp/getting-started" target="_blank">getting-started repository</a> and submit one of its example solutions as-is to see your submission in the <a href="https://www.codabench.org/competitions/16180/" target="_blank">Codabench leaderboard</a>.</p>
                 </div>
             </div>
             <div class="env-card">
                 <div class="env-icon">3️⃣</div>
                 <div>
                     <h3>Implement and package your new shiny method</h3>
-                    <p>Wrap your method in the <strong>Codabench interface</strong> specified in the <a href="https://github.com/aimo-interp/baselines" target="_blank">baselines repository</a>. No internet access is available at evaluation time.</p>
+                    <p>Wrap your method in the <strong>Codabench interface</strong> specified in the <a href="https://github.com/aimo-interp/getting-started" target="_blank">getting-started repository</a>, and draw on the <a href="https://github.com/aimo-interp/baselines" target="_blank">reference baselines</a> for worked implementations. No internet access is available at evaluation time.</p>
                 </div>
             </div>
             <div class="env-card">
@@ -1010,7 +1074,7 @@
         <p>The <strong>Main Track</strong> covers the full scale of top-performing models from AIMO 3 with no restriction on model size. The <strong>Small Models Track</strong> subsets the evaluation to the best-performing models below the <strong>10-billion-parameter</strong> scale, offering a comparable setup for methods that are more compute-heavy to train — such as Sparse Autoencoders or Transcoders — where analysing very large models may be infeasible.</p>
 
         <h3 class="section-subtitle">5. What runtime environment does my submission need?</h3>
-        <p>Submissions must be packaged as Codabench <strong>submission bundle</strong> and must conform to the unified interface defined in the <a href="https://github.com/aimo-interp/baselines" target="_blank">baselines repository</a>. Containers are evaluated on our servers <strong>without internet access</strong>. Detailed technical documentation and a starter kit will be released <strong>mid-July: competition start &amp; warmup phase</strong>.</p>
+        <p>Submissions must be packaged as Codabench <strong>submission bundle</strong> and must conform to the unified interface defined in the <a href="https://github.com/aimo-interp/getting-started" target="_blank">getting-started repository</a>. Containers are evaluated on our servers <strong>without internet access</strong>. Detailed technical documentation and a starter kit will be released <strong>mid-July: competition start &amp; warmup phase</strong>.</p>
 
         <h3 class="section-subtitle">6. Will there be tutorial material and a starter kit?</h3>
         <p>Yes. A starter kit with baseline implementations, worked examples, and full documentation will be released alongside the validation data (<strong>mid-July: competition start &amp; warmup phase</strong>). The problem formulation and evaluation methodology are described in our <a href="https://arxiv.org/abs/2607.13899" target="_blank">competition proposal paper</a>, available now on arXiv.</p>
@@ -1022,7 +1086,7 @@
         <p>Submissions are ranked by <strong>accuracy</strong> in correctly identifying the robust model from each pair on the held-out test set. The Main Track and Small Models Track are ranked separately.</p>
 
         <h3 class="section-subtitle">9. What if I have more questions?</h3>
-        <p>Reach out to us at <a href="mailto:aimo-interp@gmail.com">aimo-interp@gmail.com</a> or open a discussion on the <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub repository</a>. We aim to respond within 48 hours and will update this FAQ regularly.</p>
+        <p>Reach out to us at <a href="mailto:aimo-interp@gmail.com">aimo-interp@gmail.com</a> or open an issue in the <a href="https://github.com/aimo-interp/getting-started" target="_blank">getting-started repository</a>. We aim to respond within 48 hours and will update this FAQ regularly.</p>
     </div>
 </section>
 
@@ -1157,7 +1221,7 @@
         AIMO Interpretability Challenge &middot;
         <a href="https://www.fieldsmodel.org/" target="_blank">Fields Model Initiative</a> &middot;
         <a href="https://arxiv.org/abs/2607.13899" target="_blank">Proposal paper</a> &middot;
-        <a href="https://github.com/aimo-interp/evaluation" target="_blank">GitHub</a> &middot;
+        <a href="https://github.com/aimo-interp/getting-started" target="_blank">Getting started</a> &middot;
         <a href="mailto:aimo-interp@gmail.com">aimo-interp@gmail.com</a>
     </p>
 </footer>
