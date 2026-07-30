@@ -463,51 +463,6 @@
             margin-bottom: 0;
         }
 
-        /* PRIZES — mirrors the .submission-cards columns */
-        .prize-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin: 0 0 0.5rem;
-        }
-
-        .prize-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.13em;
-            color: var(--color-text-light);
-            margin-bottom: 0.4rem;
-        }
-
-        .prize-list {
-            list-style: none;
-        }
-
-        .prize-list li {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 0.75rem;
-            padding: 0.45rem 0;
-            border-bottom: 1px dashed var(--color-border);
-            font-size: 0.9rem;
-            color: var(--color-text-light);
-        }
-
-        .prize-list li:last-child {
-            border-bottom: none;
-        }
-
-        .prize-amount {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--color-text);
-            white-space: nowrap;
-        }
-
         /* EVALUATION */
         .eval-box {
             background: var(--color-bg-hero);
@@ -815,8 +770,7 @@
             }
 
             .model-cards,
-            .submission-cards,
-            .prize-grid {
+            .submission-cards {
                 grid-template-columns: 1fr;
             }
 
@@ -966,20 +920,15 @@
             </div>
         </div>
 
-        <div class="prize-grid">
-            <div>
-                <div class="prize-label">Main Track prizes</div>
-                <ul class="prize-list">
-                    <li><span>🥇 First prize</span><span class="prize-amount">$3,000</span></li>
-                    <li><span>🥈 Second prize</span><span class="prize-amount">$1,000</span></li>
-                    <li><span>🥉 Third prize</span><span class="prize-amount">$500</span></li>
-                </ul>
-            </div>
-            <div>
-                <div class="prize-label">Small Models Track prize</div>
-                <ul class="prize-list">
-                    <li><span>🥇 First prize</span><span class="prize-amount">$1,500</span></li>
-                </ul>
+        <h3 class="section-subtitle">Prizes</h3>
+
+        <div class="env-cards">
+            <div class="env-card">
+                <div class="env-icon">💰</div>
+                <div>
+                    <h3>Prizes for both tracks</h3>
+                    <p>We are finalizing now. There will be monetary awards for best teams in both tracks and for scientific contributions from the final reports.</p>
+                </div>
             </div>
         </div>
 
