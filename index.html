@@ -161,7 +161,9 @@
             box-shadow: 0 18px 40px rgba(10,15,30,0.4);
         }
 
-        .hero .header-bubble .underline {
+        .hero .header-bubble .underline,
+        .hero .header-bubble a {
+            color: inherit;
             text-decoration: underline;
             text-underline-offset: 0.14em;
             text-decoration-thickness: 2px;
@@ -633,6 +635,21 @@
             margin: 0.15rem 0 0.45rem;
         }
 
+        .team-sticker {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #8a6d1f;
+            background: rgba(212, 168, 67, 0.16);
+            border: 1px solid rgba(212, 168, 67, 0.4);
+            border-radius: 999px;
+            padding: 0.1rem 0.55rem;
+            margin: -0.1rem 0 0.5rem;
+        }
+
         .team-role {
             font-size: 0.8rem;
             color: var(--color-text-light);
@@ -821,9 +838,9 @@
         Can your method tell which AI truly <em>understands</em> the problem<br> and which one is faking it?<br>
         Distinguish robust from spurious reasoning in frontier AI.
     </p>
-        <a href="https://forms.gle/EmvfJz2uSEQpbttB9" class="header-bubble" target="_blank" rel="noopener noreferrer">
-        <b>Starting end of July 2026 -- <span class="underline">register for updates!</span></b>
-    </a>
+        <div class="header-bubble">
+        <b>Starting end of July 2026 -- <a href="https://discord.gg/d7dFcKrvN" target="_blank" rel="noopener noreferrer">Join our discord</a> or <a href="https://forms.gle/EmvfJz2uSEQpbttB9" target="_blank" rel="noopener noreferrer">register for updates!</a></b>
+    </div>
     <div class="badges">
         <span class="badge"><span class="emoji">💰</span> <strong>$10,000</strong> in prizes</span>
         <span class="badge"><span class="emoji">📐</span> Unseen olympiad problems</span>
@@ -937,8 +954,8 @@
             <div class="env-card">
                 <div class="env-icon">1️⃣</div>
                 <div>
-                    <h3>Register for updates</h3>
-                    <p>Fill in the <a href="https://forms.gle/EmvfJz2uSEQpbttB9" target="_blank" rel="noopener noreferrer">registration form</a> for email updates, or join our <a href="https://discord.gg/QgMrUBU9nA" target="_blank" rel="noopener noreferrer">Discord channel</a>.</p>
+                    <h3>Register or Join our Discord for Updates</h3>
+                    <p>Fill in the <a href="https://forms.gle/EmvfJz2uSEQpbttB9" target="_blank" rel="noopener noreferrer">registration form</a> for email updates, or join our <a href="https://discord.gg/d7dFcKrvN" target="_blank" rel="noopener noreferrer">Discord channel</a>.</p>
                 </div>
             </div>
             <div class="env-card">
@@ -1070,22 +1087,28 @@
                 <div class="team-role"><strong>Core organizer, baselines, beta testing.</strong> PostDoc and junior group lead working on the reliability of language models.</div>
             </div>
             <div class="team-card">
-                <div class="team-avatar"><img src="team/qianying-liu.jpg" alt="Qianying Liu" onerror="this.remove()">QL</div>
-                <div class="team-name">Qianying Liu</div>
-                <div class="team-affil">NII, Japan</div>
-                <div class="team-role"><strong>Math expertise, evaluation.</strong> Researcher in multilingual reasoning and interpretability, with a PhD from Kyoto University.</div>
-            </div>
-            <div class="team-card">
                 <div class="team-avatar"><img src="team/chuan-yang.jpg" alt="Chuan Yang" onerror="this.remove()">CY</div>
                 <div class="team-name">Chuan Yang</div>
                 <div class="team-affil">Fuzhou University</div>
                 <div class="team-role"><strong>Math expertise, data collection.</strong> Associate Professor of mathematics and optimization.</div>
             </div>
             <div class="team-card">
+                <div class="team-avatar"><img src="team/robert-belanec.jpg" alt="Róbert Belanec" onerror="this.remove()">RB</div>
+                <div class="team-name">Róbert Belanec</div>
+                <div class="team-affil">KInIT, Slovakia</div>
+                <div class="team-role"><strong>Data collection, robustness labels.</strong> PhD researcher in parameter-efficient fine-tuning and the generalization of language models.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="team/qianying-liu.jpg" alt="Qianying Liu" onerror="this.remove()">QL</div>
+                <div class="team-name">Qianying Liu</div>
+                <div class="team-affil">NII, Japan</div>
+                <div class="team-role"><strong>Math expertise, evaluation.</strong> Researcher in multilingual reasoning and interpretability, with a PhD from Kyoto University.</div>
+            </div>
+            <div class="team-card">
                 <div class="team-avatar"><img src="team/michal-spiegel.jpg" alt="Michal Spiegel" onerror="this.remove()">MS</div>
                 <div class="team-name">Michal Spiegel</div>
                 <div class="team-affil">Masaryk University</div>
-                <div class="team-role"><strong>Data collection, robustness labels.</strong> Researcher in mechanistic interpretability of reasoning and length generalization.</div>
+                <div class="team-role"><strong>Data collection management.</strong> Researcher in mechanistic interpretability of reasoning and length generalization.</div>
             </div>
             <div class="team-card">
                 <div class="team-avatar"><img src="team/josef-kuchar.jpg" alt="Josef Kuchař" onerror="this.remove()">JK</div>
@@ -1152,7 +1175,7 @@
             <div>
                 <p>
                     <strong>Primary contacts:</strong> <a href="mailto:aimo-interp@gmail.com">aimo-interp@gmail.com</a> and the
-                    <a href="https://discord.gg/QgMrUBU9nA" target="_blank" rel="noopener noreferrer">AIMO-Interp Discord</a>.
+                    <a href="https://discord.gg/d7dFcKrvN" target="_blank" rel="noopener noreferrer">AIMO-Interp Discord</a>.
                 </p>
                 <p style="margin-top: 0.5rem;">
                     We aim to respond within <strong>48 hours</strong>. For technical questions, please also consider opening an issue or discussion on the corresponding
