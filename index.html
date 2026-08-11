@@ -1111,7 +1111,7 @@
         <h3 class="section-subtitle" id="rules">Competition Rules</h3>
         <p>Submissions must follow these rules, designed to prevent overfitting and keep the competition fair:</p>
         <ol class="rules-list">
-            <li><strong>Data:</strong> teams may not use extra labeled data for the same perturbation types as in our final validation set; however, unlabeled data and labeled data for other perturbations are allowed. Any leakage of evaluation data will result in the disqualification.</li>
+            <li><strong>Data:</strong> teams may not use extra labeled data for the same perturbation types as in our final validation set; however, unlabeled data and labeled data for other perturbations are allowed, within the bulk evaluation limit of 20min/sample. Any attempts for leakage of evaluation data will result in the disqualification.</li>
             <li><strong>Signals:</strong> teams can use weights, activations, token probabilities, or any other model internal signals as inputs for their methods. While we encourage the development and submission of white-box methods, black-box statistics and behavioural analyses (eg based on models’ reasoning chains) are also permitted.</li>
             <li><strong>Tracks:</strong> teams may submit to the Main or Small models track, but each submission will count only for the chosen submission track. Teams may choose to submit the same submission to both (Main and Small Models) tracks.</li>
             <li><strong>Report:</strong> teams considered for awards must submit a technical report with details on their submission and its open-sourced implementation within two weeks of the final deadline (by November 15, 2026) for compliance checks.</li>
