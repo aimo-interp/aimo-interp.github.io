@@ -708,6 +708,11 @@
             margin-bottom: 0;
         }
 
+        .aimo-ch-fig { margin: 2rem 0 1.75rem; }
+        .aimo-ch-fig svg { width: 100%; height: auto; display: block; border-radius: 16px; }
+        .aimo-ch-wide { display: block; }
+        .aimo-ch-stacked { display: none; }
+
         /* TEAM */
 
         .team-grid {
@@ -973,7 +978,7 @@
         Distinguish robust from spurious reasoning in frontier AI.
     </p>
         <div class="header-bubble">
-        <b>Starting early August 2026 -- <a href="https://discord.gg/d7dFcKrvN" target="_blank" rel="noopener noreferrer">Join our discord</a> or <a href="https://forms.gle/EmvfJz2uSEQpbttB9" target="_blank" rel="noopener noreferrer">register for updates!</a></b>
+        <b>Starting mid August 2026 -- <a href="https://discord.gg/d7dFcKrvN" target="_blank" rel="noopener noreferrer">Join our discord</a> or <a href="https://forms.gle/EmvfJz2uSEQpbttB9" target="_blank" rel="noopener noreferrer">register for updates!</a></b>
     </div>
     <div class="badges">
         <span class="badge"><span class="emoji">💰</span> <strong>$12,500</strong> in prizes</span>
@@ -1021,44 +1026,177 @@
         <div class="section-label">The Challenge</div>
         <h2 class="section-title">Robust or Spurious?</h2>
         <p>
-            The AIMO Interpretability Challenge will require participants to submit a <strong>system</strong> that decides <strong>which LLM provides an answer to a given AIMO problem <em>robustly</em></strong>.
+            The AIMO Interpretability Challenge requires participants to submit a <strong>system</strong>
+            that decides, for a single <strong>problem–model pair</strong>, whether that model answers
+            <em>that</em> problem <strong>robustly</strong>.
             The full problem formulation, data collection, and evaluation protocol are described in our
-            <a href="https://arxiv.org/abs/2607.13899" target="_blank">competition proposal paper</a>.
-        </p>
-        <p>
-            For each problem, we provide one of two LLMs:
+            <a href="https://arxiv.org/abs/2607.13899">competition proposal paper</a>.
         </p>
 
-        <div class="model-cards">
-            <div class="model-card robust">
-                <div class="card-icon">🛡️</div>
-                <h3>Robust Model</h3>
-                <p>The highest-ranked LLM submission to AIMO that passes all our robustness checks.</p>
+        <figure class="aimo-ch-fig">
+
+            <!-- wide layout (>720px) -->
+            <div class="aimo-ch-wide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" role="img" aria-labelledby="ttl dsc">
+                <title id="ttl">One problem, one model, one verdict</title>
+                <desc id="dsc">An unseen olympiad problem and one AIMO 3 model are passed to the participant's system, which returns a single verdict: robust or spurious.</desc>
+
+                <defs>
+                <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#0B1E45"/>
+                    <stop offset="55%" stop-color="#081737"/>
+                    <stop offset="100%" stop-color="#050F26"/>
+                </linearGradient>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M40 0 V40 M0 40 H40" fill="none" stroke="#2B7FFF" stroke-width="0.5" opacity="0.10"/>
+                </pattern>
+                <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#2B7FFF" stop-opacity="0.28"/>
+                    <stop offset="100%" stop-color="#2B7FFF" stop-opacity="0"/>
+                </radialGradient>
+                <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M0 0 L10 5 L0 10 z" fill="#5B8DD6"/>
+                </marker>
+                <style>
+                    .cap  { font: 700 12.5px ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; fill: #F2B233; letter-spacing: .16em; }
+                    .box  { font: 800 21px ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; fill: #FFFFFF; }
+                    .sub  { font: 500 13.5px ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; fill: #9DB4D8; }
+                    .ask  { font: 700 15px ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; fill: #6FA8FF; letter-spacing: .03em; }
+                    .mark { font: 700 21px ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
+                </style>
+                </defs>
+
+                <rect width="960" height="320" rx="16" fill="url(#bg)"/>
+                <rect width="960" height="320" rx="16" fill="url(#grid)"/>
+                <ellipse cx="559" cy="155" rx="240" ry="135" fill="url(#glow)"/>
+
+                <!-- inputs -->
+                <rect x="40" y="40" width="270" height="100" rx="14" fill="#102A57" fill-opacity="0.75" stroke="#2B7FFF" stroke-opacity="0.35" stroke-width="1.5"/>
+                <text x="64" y="72" class="cap">PROBLEM</text>
+                <text x="64" y="102" class="box">Olympiad problem</text>
+                <text x="64" y="124" class="sub">unseen, from AIMO 3</text>
+
+                <rect x="40" y="170" width="270" height="100" rx="14" fill="#102A57" fill-opacity="0.75" stroke="#2B7FFF" stroke-opacity="0.35" stroke-width="1.5"/>
+                <text x="64" y="202" class="cap">MODEL</text>
+                <text x="64" y="232" class="box">One AIMO 3 model</text>
+                <text x="64" y="254" class="sub">weights · activations · CoT</text>
+
+                <!-- merge into a single instance -->
+                <path d="M310 90 H336 Q350 90 350 104 V141" fill="none" stroke="#5B8DD6" stroke-opacity="0.7" stroke-width="1.5"/>
+                <path d="M310 220 H336 Q350 220 350 206 V169" fill="none" stroke="#5B8DD6" stroke-opacity="0.7" stroke-width="1.5"/>
+                <circle cx="350" cy="155" r="4.5" fill="#F2B233"/>
+                <path d="M355 155 H 424" fill="none" stroke="#5B8DD6" stroke-width="1.5" marker-end="url(#arw)"/>
+
+                <!-- system -->
+                <rect x="434" y="105" width="250" height="100" rx="14" fill="#0C2149" fill-opacity="0.9" stroke="#F2B233" stroke-opacity="0.55" stroke-width="1.5"/>
+                <text x="559" y="149" text-anchor="middle" class="box">Your system</text>
+                <text x="559" y="176" text-anchor="middle" class="sub">white-box or black-box</text>
+                <text x="559" y="248" text-anchor="middle" class="ask">Is this model robust on this problem?</text>
+
+                <path d="M694 155 H 748" fill="none" stroke="#5B8DD6" stroke-width="1.5" marker-end="url(#arw)"/>
+
+                <!-- verdict -->
+                <rect x="758" y="91" width="180" height="56" rx="12" fill="#0D2A55" fill-opacity="0.85" stroke="#3B9EFF" stroke-width="1.5"/>
+                <text x="784" y="127" class="mark" fill="#3B9EFF">✓</text>
+                <text x="812" y="126" class="box">Robust</text>
+
+                <rect x="758" y="163" width="180" height="56" rx="12" fill="#2E2410" fill-opacity="0.85" stroke="#F2B233" stroke-width="1.5"/>
+                <text x="784" y="199" class="mark" fill="#F2B233">⚠</text>
+                <text x="812" y="198" class="box">Spurious</text>
+
+                <text x="848" y="248" text-anchor="middle" class="sub">one binary verdict</text>
+            </svg>
             </div>
-            <div class="model-card spurious">
-                <div class="card-icon">⚠️</div>
-                <h3>Spurious Model</h3>
-                <p>The highest-ranked LLM for which we verify its reliance on at least one spurious pattern by counterfactual evaluation.</p>
+
+            <!-- stacked layout (<=720px) -->
+            <div class="aimo-ch-stacked">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 572" role="img" aria-labelledby="ttlm dscm">
+                <title id="ttlm">One problem, one model, one verdict</title>
+                <desc id="dscm">An unseen olympiad problem and one AIMO 3 model are passed to the participant's system, which returns a single verdict: robust or spurious.</desc>
+                <defs>
+                <linearGradient id="bgm" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#0B1E45"/><stop offset="55%" stop-color="#081737"/><stop offset="100%" stop-color="#050F26"/>
+                </linearGradient>
+                <pattern id="gridm" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M40 0 V40 M0 40 H40" fill="none" stroke="#2B7FFF" stroke-width="0.5" opacity="0.10"/>
+                </pattern>
+                <marker id="arwm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M0 0 L10 5 L0 10 z" fill="#5B8DD6"/>
+                </marker>
+                <style>
+                    .capm{font:700 11px ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;fill:#F2B233;letter-spacing:.16em}
+                    .boxm{font:800 18px ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;fill:#fff}
+                    .subm{font:500 12.5px ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;fill:#9DB4D8}
+                    .askm{font:700 13.5px ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;fill:#6FA8FF}
+                    .markm{font:700 18px ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif}
+                </style>
+                </defs>
+                <rect width="380" height="572" rx="16" fill="url(#bgm)"/>
+                <rect width="380" height="572" rx="16" fill="url(#gridm)"/>
+
+                <rect x="20" y="20" width="340" height="86" rx="14" fill="#102A57" fill-opacity=".75" stroke="#2B7FFF" stroke-opacity=".35" stroke-width="1.5"/>
+                <text x="44" y="49" class="capm">PROBLEM</text>
+                <text x="44" y="76" class="boxm">Olympiad problem</text>
+                <text x="44" y="95" class="subm">unseen, from AIMO 3</text>
+
+                <rect x="20" y="120" width="340" height="86" rx="14" fill="#102A57" fill-opacity=".75" stroke="#2B7FFF" stroke-opacity=".35" stroke-width="1.5"/>
+                <text x="44" y="149" class="capm">MODEL</text>
+                <text x="44" y="176" class="boxm">One AIMO 3 model</text>
+                <text x="44" y="195" class="subm">weights · activations · CoT</text>
+
+                <circle cx="190" cy="222" r="4.5" fill="#F2B233"/>
+                <path d="M190 227 V 258" fill="none" stroke="#5B8DD6" stroke-width="1.5" marker-end="url(#arwm)"/>
+
+                <rect x="20" y="268" width="340" height="86" rx="14" fill="#0C2149" fill-opacity=".9" stroke="#F2B233" stroke-opacity=".55" stroke-width="1.5"/>
+                <text x="190" y="306" text-anchor="middle" class="boxm">Your system</text>
+                <text x="190" y="328" text-anchor="middle" class="subm">white-box or black-box</text>
+                <text x="190" y="378" text-anchor="middle" class="askm">Is this model robust on this problem?</text>
+
+                <path d="M190 392 V 420" fill="none" stroke="#5B8DD6" stroke-width="1.5" marker-end="url(#arwm)"/>
+
+                <rect x="20" y="430" width="163" height="56" rx="12" fill="#0D2A55" fill-opacity=".85" stroke="#3B9EFF" stroke-width="1.5"/>
+                <text x="46" y="465" class="markm" fill="#3B9EFF">✓</text>
+                <text x="70" y="464" class="boxm">Robust</text>
+
+                <rect x="197" y="430" width="163" height="56" rx="12" fill="#2E2410" fill-opacity=".85" stroke="#F2B233" stroke-width="1.5"/>
+                <text x="223" y="465" class="markm" fill="#F2B233">⚠</text>
+                <text x="247" y="464" class="boxm">Spurious</text>
+
+                <text x="190" y="516" text-anchor="middle" class="subm">one binary verdict</text>
+            </svg>
             </div>
+
+        </figure>
+
+        <p>What do we mean by <strong>robust</strong> or <strong>spurious</strong>?</p>
+        <div class="submission-cards">
+
+            <div class="sub-card">
+            <h3>🛡️ Robust</h3>
+            <p>
+                The model's answer holds up under perturbations that leave the mathematical content of the problem unchanged.
+            </p>
+            </div>
+
+            <div class="sub-card">
+            <h3>⚠️ Spurious</h3>
+            <p>
+                Counterfactual evaluation with perturbations reveals that the model's answer relies on at least one spurious pattern.
+            </p>
+            </div>
+
         </div>
 
         <p>
-            Submitted methods will be evaluated for their <strong>accuracy</strong> in classifying if a given model responds to a given problem <strong>robustly</strong>.
+        Competition submissions take the form of <strong>Codabench submission bundles</strong> that comply
+        with the unified interface defined in the
+        <a href="https://github.com/aimo-interp/getting-started" target="_blank">getting-started repository</a>,
+        and are evaluated on our servers <strong>without internet access</strong>.
+        Methods are ranked by their <strong>accuracy</strong> in classifying whether a given model answers
+        a given problem <strong>robustly</strong>.
+        The provided validation set covers all types of models contained in the test set.
         </p>
-
-        <div class="eval-box">
-            <div class="eval-icon">📋</div>
-            <div>
-                <p>
-                    Competition submissions will be submitted as <strong>Codabench submission bundles</strong> that comply with the unified interface defined in the
-                    <a href="https://github.com/aimo-interp/getting-started" target="_blank">getting-started repository</a>.
-                    Submissions will be evaluated on our servers <strong>without internet access</strong>.
-                    The provided validation set will cover all types of models contained in the test set.
-                </p>
-            </div>
-        </div>
-
-        <h3 class="section-subtitle">Submission Types</h3>
+                    <h3 class="section-subtitle">Submission Types</h3>
 
         <div class="submission-cards">
             <div class="sub-card main">
@@ -1081,15 +1219,15 @@
                 <ul class="prize-list">
                     <li><span class="place">🥇 1st place</span> <span class="amount">$3,000</span></li>
                     <li><span class="place">🥈 2nd place</span> <span class="amount">$1,000</span></li>
-                    <li><span class="place">🥉 3rd place</span> <span class="amount">$500</span></li>
+                    <li><span class="place">🥉 3rd place</span> <span class="amount">$600</span></li>
                 </ul>
             </div>
             <div class="prize-card small">
                 <h3>🔬 Small Models Track</h3>
                 <ul class="prize-list">
                     <li><span class="place">🥇 1st place</span> <span class="amount">$2,000</span></li>
-                    <li><span class="place">🥈 2nd place</span> <span class="amount">$500</span></li>
-                    <li><span class="place">🥉 3rd place</span> <span class="amount">$200</span></li>
+                    <li><span class="place">🥈 2nd place</span> <span class="amount">$600</span></li>
+                    <li><span class="place">🥉 3rd place</span> <span class="amount">$300</span></li>
                 </ul>
             </div>
 
@@ -1102,7 +1240,7 @@
             <div>
                 <h3>✍ Writeup Prizes</h3>
                 <p>
-                    A portion of prizes will be awarded  for selected <strong>technical reports</strong>, regardless of their ranking, judged on their <strong>scientific contribution</strong>.
+                    <strong>$5,000</strong> will be awarded for selected <strong>technical reports</strong>, regardless of their ranking, judged on their <strong>scientific contribution</strong>.
                     We are particularly interested in work on <strong>generalization of interpretability methods</strong>, <strong>actionable interpretability</strong>, <strong>negative results</strong> or <strong>efficient methods</strong>.
                 </p>
             </div>
@@ -1215,7 +1353,7 @@
         <p>Yes, teams may submit to both the Main Track and the Small Models Track independently.</p>
 
         <h3 class="section-subtitle">7. How is the winner determined?</h3>
-        <p>Submissions are ranked by <strong>accuracy</strong> in correctly identifying the robust model from each pair on the held-out test set. The Main Track and Small Models Track are ranked separately.</p>
+        <p>Submissions are ranked by accuracy in classifying each problem–model instance as robust or spurious on the held-out test set. The Main Track and Small Models Track are ranked separately.</p>
 
         <h3 class="section-subtitle">8. What if I have more questions?</h3>
         <p>Reach out to us at <a href="mailto:aimo.interp@gmail.com">aimo.interp@gmail.com</a> or open an issue in the <a href="https://github.com/aimo-interp/getting-started" target="_blank">getting-started repository</a>. We aim to respond within 48 hours and will update this FAQ regularly.</p>
