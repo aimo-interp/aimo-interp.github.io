@@ -1091,7 +1091,7 @@
                 <rect x="434" y="105" width="250" height="100" rx="14" fill="#0C2149" fill-opacity="0.9" stroke="#F2B233" stroke-opacity="0.55" stroke-width="1.5"/>
                 <text x="559" y="149" text-anchor="middle" class="box">Your system</text>
                 <text x="559" y="176" text-anchor="middle" class="sub">white-box or black-box</text>
-                <text x="559" y="248" text-anchor="middle" class="ask">Is this model robust on this problem?</text>
+                <text x="559" y="248" text-anchor="middle" class="ask">Is the model solving the problem robustly?</text>
 
                 <path d="M694 155 H 748" fill="none" stroke="#5B8DD6" stroke-width="1.5" marker-end="url(#arw)"/>
 
@@ -1137,7 +1137,7 @@
                 <rect x="20" y="20" width="340" height="86" rx="14" fill="#102A57" fill-opacity=".75" stroke="#2B7FFF" stroke-opacity=".35" stroke-width="1.5"/>
                 <text x="44" y="49" class="capm">PROBLEM</text>
                 <text x="44" y="76" class="boxm">Olympiad problem</text>
-                <text x="44" y="95" class="subm">unseen, from AIMO 3</text>
+                <text x="44" y="95" class="subm">incl. never published AIMO problems</text>
 
                 <rect x="20" y="120" width="340" height="86" rx="14" fill="#102A57" fill-opacity=".75" stroke="#2B7FFF" stroke-opacity=".35" stroke-width="1.5"/>
                 <text x="44" y="149" class="capm">MODEL</text>
@@ -1174,7 +1174,7 @@
             <div class="sub-card">
             <h3>🛡️ Robust</h3>
             <p>
-                The model's answer holds up under perturbations that leave the mathematical content of the problem unchanged.
+                The model's answer holds up under perturbations that leave the deductive chain of the problem unchanged.
             </p>
             </div>
 
@@ -1249,8 +1249,8 @@
         <h3 class="section-subtitle" id="rules">Competition Rules</h3>
         <p>Submissions must follow these rules, designed to prevent overfitting and keep the competition fair:</p>
         <ol class="rules-list">
-            <li><strong>Data:</strong> teams may not use extra labeled data for the same perturbation types as in our final validation set; however, unlabeled data and labeled data for other perturbations are allowed, within the bulk evaluation limit of 20min/sample. Any attempts for leakage of evaluation data will result in the disqualification.</li>
-            <li><strong>Signals:</strong> teams can use weights, activations, token probabilities, or any other model internal signals as inputs for their methods. While we encourage the development and submission of white-box methods, black-box statistics and behavioural analyses (eg based on models’ reasoning chains) are also permitted.</li>
+<!--            <li><strong>Data:</strong> teams may not use extra labeled data for the same perturbation types as in our final validation set; however, unlabeled data and labeled data for other perturbations are allowed, within the bulk evaluation limit of 20min/sample. Any attempts for leakage of evaluation data will result in the disqualification.</li>-->
+            <li><strong>Signals:</strong> teams can use weights, activations, token probabilities, or any other model internal signals as inputs for their methods. While we encourage the development and submission of white-box methods, black-box behavioural analyses within the evaluation compute budget (eg based on models’ reasoning chains) are also permitted.</li>
             <li><strong>Tracks:</strong> teams may submit to the Main or Small models track, but each submission will count only for the chosen submission track. Teams may choose to submit the same submission to both (Main and Small Models) tracks.</li>
             <li><strong>Report:</strong> teams considered for awards must submit a technical report with details on their submission and its open-sourced implementation within two weeks of the final deadline (by November 15, 2026) for compliance checks.</li>
             <li><strong>Reviewing:</strong> teams considered for awards commit to peer-review up to 3 technical reports of other teams during the reviewing period (November 15&ndash;30, 2026).</li>
