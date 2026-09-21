@@ -1369,7 +1369,7 @@
         <p>Submissions are ranked by accuracy in classifying each problem–model instance as robust or spurious on the held-out test set. The Main Track and Small Models Track are ranked separately.</p>
 
         <h3 class="section-subtitle">12. What sampling/decoding settings were used to generate model predictions?</h3>
-        <p>We used <strong>temperature = 1.0</strong>, with <strong>top_k</strong> and <strong>top_p</strong> left at their default llama.cpp values (<strong>top_k = 40</strong>, <strong>top_p = 0.95</strong>).</p>
+        <p>We used <strong>temperature = 1.0</strong>, <strong>top_k = 40</strong>, and <strong>top_p = 0.95</strong> to keep the answers diverse.</p>
 
         <h3 class="section-subtitle">13. What is the maximum generation length, and how are responses that run out of budget scored?</h3>
         <p>The maximum generation length is <strong>100,000 tokens</strong>, including thinking. We also experimented with a thinking-budget approach that truncates the reasoning and issues a follow-up call to force a final answer, but this is <strong>not used</strong> in the current version of the validation set — a response that reaches the limit without a parseable final answer is scored as incorrect, the same as any other wrong answer.</p>
