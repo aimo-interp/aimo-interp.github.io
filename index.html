@@ -557,6 +557,77 @@
             color: #a07d22;
         }
 
+        /* SPECIAL PRIZE (per-track award) */
+        .special-prize {
+            margin: 1.1rem -1rem 0;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            border: 1px dashed rgba(6, 182, 212, 0.55);
+            background: rgba(6, 182, 212, 0.07);
+        }
+
+        .special-prize-link {
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 0.82rem;
+            color: var(--color-text-light);
+            text-decoration: none;
+        }
+
+        .special-prize-link:hover {
+            color: #0e7490;
+            text-decoration: underline;
+        }
+
+        .special-prize-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .special-prize-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--color-text);
+        }
+
+        .special-prize .amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0e7490;
+        }
+
+        .whitebox-note {
+            margin-top: 1.5rem;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            border: 1px dashed rgba(6, 182, 212, 0.55);
+            background: rgba(6, 182, 212, 0.07);
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+        }
+
+        .whitebox-note h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .whitebox-note p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .whitebox-note strong {
+            color: var(--color-text);
+        }
+
+
         /* WRITEUP PRIZES */
         .writeup-box h3 {
             font-family: 'Space Grotesk', sans-serif;
@@ -1194,6 +1265,10 @@
                 padding: 1.5rem;
             }
 
+            .whitebox-note {
+                padding: 1.5rem;
+            }
+
             section {
                 padding: 3.5rem 1.5rem;
             }
@@ -1495,18 +1570,30 @@
             <div class="prize-card main">
                 <h3>🏆 Main Track</h3>
                 <ul class="prize-list">
-                    <li><span class="place">🥇 1st place</span> <span class="amount">$3,000</span></li>
+                    <li><span class="place">🥇 1st place</span> <span class="amount">$2,500</span></li>
                     <li><span class="place">🥈 2nd place</span> <span class="amount">$1,000</span></li>
-                    <li><span class="place">🥉 3rd place</span> <span class="amount">$600</span></li>
+                    <li><span class="place">🥉 3rd place</span> <span class="amount">$500</span></li>
                 </ul>
+                <div class="special-prize">
+                    <div class="special-prize-head">
+                        <span class="special-prize-title">✨ White-Box Award <a href="#white-box-award" class="special-prize-link">(see below)</a></span>
+                        <span class="amount">+$1,000</span>
+                    </div>
+                </div>
             </div>
             <div class="prize-card small">
                 <h3>🔬 Small Models Track</h3>
                 <ul class="prize-list">
-                    <li><span class="place">🥇 1st place</span> <span class="amount">$2,000</span></li>
-                    <li><span class="place">🥈 2nd place</span> <span class="amount">$600</span></li>
+                    <li><span class="place">🥇 1st place</span> <span class="amount">$1,500</span></li>
+                    <li><span class="place">🥈 2nd place</span> <span class="amount">$700</span></li>
                     <li><span class="place">🥉 3rd place</span> <span class="amount">$300</span></li>
                 </ul>
+                <div class="special-prize">
+                    <div class="special-prize-head">
+                        <span class="special-prize-title">✨ White-Box Award <a href="#white-box-award" class="special-prize-link">(see below)</a></span>
+                        <span class="amount">+$1,000</span>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -1514,11 +1601,18 @@
             <strong>Ties</strong> in the ranking are broken by <strong>efficiency</strong>: preference is given to the submission with the faster average runtime over three repeated trials.
         </p>
 
+        <div class="whitebox-note" id="white-box-award">
+            <h3>✨ White-Box Award 🆕</h3>
+            <p>
+                Every submission in both tracks is automatically considered for that track's White-Box Award if it uses <strong>white-box signals</strong> &mdash; such as hidden-state activations, residual stream or attention patterns; weights, gradients or parameter-space analysis; probes, sparse autoencoders, transcoders or other learned readouts of internals; or interventions such as activation patching or steering &mdash; and its <strong>technical report</strong> shows, through a dedicated <strong>ablation</strong>, that this signal has a <strong>substantial effect</strong> on the submission's performance.
+            </p>
+        </div>
+
         <div class="eval-box writeup-box" style="margin-top: 1.5rem;">
             <div>
                 <h3>✍ Writeup Prizes</h3>
                 <p>
-                    <strong>$5,000</strong> will be awarded for selected <strong>technical reports</strong>, regardless of their ranking, judged on their <strong>scientific contribution</strong>.
+                    <strong>$4,000</strong> will be awarded for selected <strong>technical reports</strong>, regardless of their ranking, judged on their <strong>scientific contribution</strong>.
                     We are particularly interested in work on <strong>generalization of interpretability methods</strong>, <strong>actionable interpretability</strong>, <strong>negative results</strong> or <strong>efficient methods</strong>.
                 </p>
             </div>
